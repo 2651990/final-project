@@ -1,0 +1,42 @@
+.hot-items {
+    padding: 10px;
+    font-family: 'Segoe UI';
+    font-size: 25px;
+}
+.carousel-item-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.carousel-item-content img {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+}
+
+.hot-photo-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+}
+
+.hotPhotoContainer {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.hot-photo-icon > img {
+    width: 50%;
+    height: 180px;
+    border-radius: 16px;
+    padding: 10px;
+}
+
+#fire {
+    color: red;
+}
+

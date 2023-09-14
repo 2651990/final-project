@@ -1,0 +1,32 @@
+.deliveryDetailsText {
+    margin-left: 15px;
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+.deliveryDetails {
+    margin-left: 15px;
+    font-size: 15px;
+}
+
+.margin {
+    margin-left: 15px; 
+}
+
+.contactNum {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 8px;
+}
+
+.chectoutBtn {
+    margin-top: 10px;
+margin-left: 75%;
+}
+
+.calendar {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+}

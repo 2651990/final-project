@@ -1,0 +1,25 @@
+.descriptionPrice {
+   margin-top: 10px;
+   margin-left: 8px;
+   display: flex;
+   flex-wrap: wrap;
+   font-size: 15px
+}
+
+.productDetails {
+   margin: 8px;
+}
+
+.addToCart {
+   background-color: rgb(154, 183, 103);
+   color: white;
+   text-align: center;
+   font-size: 20px;
+   margin: 8px;
+   border-radius: 5px;
+}
+
+.carousel .thumbs-wrapper {
+   margin: 0px !important;
+   overflow: hidden !important;
+}

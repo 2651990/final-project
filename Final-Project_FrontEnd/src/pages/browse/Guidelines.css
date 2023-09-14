@@ -1,0 +1,25 @@
+.guidelineTitle {
+    margin: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.guidelinePhoto {
+    height:50%;
+    width: 80%;
+    margin-left: 20px;
+}
+
+.guidelineAddToCart {
+    height:30%;
+    width: 30%;
+    margin-left: 30%;
+}
+
+.stepText {
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    font-size: 16px;
+}

@@ -1,0 +1,47 @@
+
+body {
+    background-color: rgb(1, 58, 1);
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-size: 15px;
+    color: #060606;
+    margin: 0;
+    padding: 0;
+  }
+
+  .swiper {
+    width: 100%;
+    height: 50px;
+  }
+
+  .swiper-slide {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    color: white;
+  }
+
+  .displayStyle {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:baseline;
+    margin-left: 6.5px;
+}
+  
+img {
+    width: 100%;
+    height: 300px;
+}
+
+.menuSlider {
+    border: solid;
+    border-width: 1px;
+    border-color: rgb(207, 205, 205);
+    background-color: rgb(21, 109, 37);
+}
+
+.title {
+    background-color: rgb(1, 58, 1);
+    color: #ffffff;
+}
