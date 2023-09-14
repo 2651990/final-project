@@ -1,0 +1,156 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model notification {
+  id         Int      @id @default(autoincrement())
+  created_at DateTime @default(now())
+  update_at  DateTime @default(now())
+  title      String
+  content    String
+  users      users[]
+}
+
+model users {
+  id                Int           @id @default(autoincrement())
+  username          String        @unique
+  email             String?       @unique
+  password          String?
+  profile_pic       String?
+  created_at        DateTime      @default(now())
+  update_at         DateTime      @default(now())
+  orders            orders[]
+  sender_chatroom   chatroom[]    @relation("sender_chatroom")
+  admin_chatroom chatroom[]    @relation("admin_chatroom")
+  sender_message    message[]     @relation("sender_message")
+  admin_message  message[]     @relation("admin_message")
+  cart              cart[]
+  notification      notification? @relation(fields: [notification_id], references: [id])
+  notification_id   Int?
+}
+
+model chatroom {
+  id          Int       @id @default(autoincrement())
+  sender_id   Int
+  admin_id Int
+  sender      users?    @relation("sender_chatroom", fields: [sender_id], references: [id])
+  admin    users?    @relation("admin_chatroom", fields: [admin_id], references: [id])
+  message     message[]
+  created_at  DateTime  @default(now())
+  update_at   DateTime  @default(now())
+}
+
+model message {
+  id          Int       @id @default(autoincrement())
+  sender_id   Int
+  is_sender_msg Boolean
+  admin_id Int
+  chatroom_id Int
+  chatroom    chatroom? @relation(fields: [chatroom_id], references: [id])
+  content  String?
+  sender     users?   @relation("sender_message", fields: [sender_id], references: [id])
+  admin   users?   @relation("admin_message", fields: [admin_id], references: [id])
+  created_at DateTime @default(now())
+  update_at  DateTime @default(now())
+}
+
+model official_camp_site {
+  id      Int      @id @default(autoincrement())
+  address String
+  orders  orders[]
+}
+
+model orders {
+  id                    Int                 @id @default(autoincrement())
+  user_id               Int
+  users                 users?              @relation(fields: [user_id], references: [id])
+  official_camp_site_id Int
+  official_camp_site    official_camp_site? @relation(fields: [official_camp_site_id], references: [id])
+  mobile                Int
+  // deliver_date          DateTime            @default(now()) @db.Date
+  // deliver_time          DateTime            @default(now()) @db.Time
+  deliver_date          String
+  deliver_time          String
+  payment               Int?
+  // payment_date          DateTime            @default(now()) @db.Date
+  payment_date          String?
+  created_at            DateTime            @default(now())
+  update_at             DateTime            @default(now())
+  order_item            order_item[]
+}
+
+model single_item {
+  id                     Int                      @id @default(autoincrement())
+  type_name              String
+  description            String
+  details                String?
+  photo                  String
+  price                  Int
+  package_item           package_item[]
+  order_item             order_item[]
+  single_item_all_photos single_item_all_photos[]
+  cart                   cart[]
+}
+
+model single_item_all_photos {
+  id             Int          @id @default(autoincrement())
+  photo          String
+  single_item_id Int
+  single_item    single_item? @relation(fields: [single_item_id], references: [id])
+}
+
+model packages {
+  id                 Int                  @id @default(autoincrement())
+  order_item         order_item[]
+  package_item       package_item[]
+  package_name       String
+  description        String
+  details            String
+  photo              String
+  price         Int
+  package_all_photos package_all_photos[]
+  cart               cart[]
+}
+
+model package_item {
+  id             Int          @id @default(autoincrement())
+  packages_id    Int
+  packages       packages?    @relation(fields: [packages_id], references: [id])
+  single_item_id Int
+  single_item    single_item? @relation(fields: [single_item_id], references: [id])
+}
+
+model package_all_photos {
+  id          Int       @id @default(autoincrement())
+  photo       String
+  packages_id Int
+  packages    packages? @relation(fields: [packages_id], references: [id])
+}
+
+model cart {
+  id             Int          @id @default(autoincrement())
+  packages_id    Int?
+  packages       packages?    @relation(fields: [packages_id], references: [id])
+  quantity       Int
+  single_item_id Int?
+  single_item    single_item? @relation(fields: [single_item_id], references: [id])
+  user_id        Int
+  users          users?       @relation(fields: [user_id], references: [id])
+}
+
+model order_item {
+  id             Int          @id @default(autoincrement())
+  order_id       Int
+  orders         orders?      @relation(fields: [order_id], references: [id])
+  packages_id    Int?
+  packages       packages?    @relation(fields: [packages_id], references: [id])
+  single_item_id Int?
+  single_item    single_item? @relation(fields: [single_item_id], references: [id])
+  quantity       Int
+  price     Int
+}

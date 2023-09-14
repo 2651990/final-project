@@ -1,0 +1,4 @@
+Host frd
+  Hostname 52.221.144.78
+  User ubuntu
+IdentityFile ~/.ssh/c26.pem
